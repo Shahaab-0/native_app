@@ -1,0 +1,16 @@
+export const colors = {
+  darkBlue: '#262444',
+  lightBlue: '#20D3C2',
+  primaryColor: '#0E153D',
+  primaryLight: '#20D3C2',
+  secondaryColor: '',
+  iconColor: '#d38373',
+  bubblegumLight: '#70FFF1',
+  bubblegumMedium: '#20D3C2',
+  bubblegumDark: '#168A7F',
+  orangeLight: '#fdecc8',
+  orangeMedium: '#f0a675',
+  orangeDark: '#ce756e',
+  orangeExtraLight: '#ffefd8',
+  grey: '#63666A',
+};
