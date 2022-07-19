@@ -11,6 +11,7 @@ import QiblaScreen from '../screens/qibla';
 import TaqibaatScreen from '../screens/taqibaat';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Fonts from '../styles/Fonts';
+import DuaTab from '../screens/DuaTab/Index';
 
 const Tab = createBottomTabNavigator();
 
@@ -147,28 +148,6 @@ const BottomTabs = () => {
             component={item.component}
             options={({navigation}) => ({
               headerShown: false,
-              headerLeft: props => {
-                return (
-                  <TouchableOpacity
-                    style={{marginLeft: 15}}
-                    onPress={() => navigation.openDrawer()}>
-                    <Ionicons name="menu" size={25} color={'#fff'} />
-                  </TouchableOpacity>
-                );
-              },
-              headerRight: props => {
-                return (
-                  <TouchableOpacity
-                    style={{marginRight: 15}}
-                    onPress={() => navigation.goBack()}>
-                    <Ionicons
-                      name="arrow-back-outline"
-                      size={25}
-                      color={'#fff'}
-                    />
-                  </TouchableOpacity>
-                );
-              },
               headerTitle: item.label,
               tabBarLabel: item.label,
               headerTitleAlign: 'center',

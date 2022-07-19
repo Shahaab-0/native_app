@@ -19,6 +19,9 @@ import DuaScreen from '../screens/dua';
 import PrayerDetailScreen from '../screens/PrayerDetail';
 import LibraryScreen from '../screens/Library/Index';
 import LibraryDetailScreen from '../screens/LibraryDetail/Index';
+import AboutUsScreen from '../screens/AboutUs/Index';
+import DuaTab from '../screens/DuaTab/Index';
+import DuaTabDetail from '../screens/DuaTabDetail.js/Index';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -61,6 +64,18 @@ const DrawerContent = props => {
           label="Library"
           labelStyle={styles.drawerLblStyle}
           onPress={() => props.navigation.navigate('LibraryScreen')}
+        />
+        <View style={styles.line} />
+        <DrawerItem
+          label="About Us"
+          labelStyle={styles.drawerLblStyle}
+          onPress={() => props.navigation.navigate('AboutUsScreen')}
+        />
+        <View style={styles.line} />
+        <DrawerItem
+          label="Dua"
+          labelStyle={styles.drawerLblStyle}
+          onPress={() => props.navigation.navigate('DuaTab')}
         />
       </DrawerContentScrollView>
     </Animated.View>
@@ -134,8 +149,35 @@ export const Screens = ({navigation, style}) => {
             headerTintColor: '#fff',
             headerTitleAlign: 'center',
           }}
+          name="AboutUsScreen"
+          component={AboutUsScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerTitle: 'VEIEN TIL ALLAH',
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+          }}
           name="LibraryDetailScreen"
           component={LibraryDetailScreen}
+        />
+        <Stack.Screen
+          options={{
+            headerTitle: 'VEIEN TIL ALLAH',
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+          }}
+          name="DuaTabDetail"
+          component={DuaTabDetail}
+        />
+        <Stack.Screen
+          options={{
+            headerTitle: 'VEIEN TIL ALLAH',
+            headerTintColor: '#fff',
+            headerTitleAlign: 'center',
+          }}
+          name="DuaTab"
+          component={DuaTab}
         />
       </Stack.Navigator>
     </Animated.View>

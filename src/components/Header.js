@@ -12,7 +12,7 @@ const Header = props => {
       <TouchableOpacity onPress={() => props.navigation.openDrawer()}>
         <Ionicons name="menu" size={25} color={colors.darkBlue} />
       </TouchableOpacity>
-      <Text style={[headerText, RalewayBold]}>Veien til Allah</Text>
+      <Text style={[headerText, RalewayBold]}>{props.title}</Text>
       <TouchableOpacity onPress={() => props.navigation.goBack()}>
         <Ionicons name="arrow-back-outline" size={25} color={colors.darkBlue} />
       </TouchableOpacity>
@@ -28,9 +28,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   headerText: {
-    position: 'absolute',
-    left: '46%',
-    top: 26,
     fontSize: 20,
     color: colors.darkBlue,
   },

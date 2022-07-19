@@ -8,6 +8,8 @@ import {
   View,
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Header from '../../components/Header';
+import Fonts from '../../styles/Fonts';
 import {colors} from '../../styles/colors';
 
 const TaqibaatScreen = ({navigation}) => {
@@ -19,6 +21,7 @@ const TaqibaatScreen = ({navigation}) => {
     {title: 'DUA MAGHRIB', id: 4, header: 'Dua Maghrib', data: 'Maghrib'},
     {title: 'DUA ISHA', id: 5, header: 'Dua Isha', data: 'Isha'},
   ];
+  const {RalewaySemiBold, RalewayBold} = Fonts;
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
@@ -30,12 +33,13 @@ const TaqibaatScreen = ({navigation}) => {
         }
         style={titleContainer}
         activeOpacity={0.7}>
-        <Text style={titleText}>{item.title}</Text>
+        <Text style={[titleText, RalewayBold]}>{item.title}</Text>
       </TouchableOpacity>
     );
   };
   return (
     <View style={container}>
+      <Header title={'Prayer'} navigation={navigation} />
       <View style={innerContainer}>
         <FlatList
           data={data}
@@ -54,9 +58,16 @@ const TaqibaatScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.orangeLight,
+    backgroundColor: colors.orangeMedium,
   },
-  innerContainer: {},
+  innerContainer: {
+    backgroundColor: colors.orangeExtraLight,
+    flex: 1,
+    marginTop: 30,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    elevation: 5,
+  },
   titleContainer: {
     alignItems: 'center',
     borderWidth: 2,
@@ -69,7 +80,6 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 17,
-    fontWeight: 'bold',
     color: colors.orangeMedium,
   },
 });

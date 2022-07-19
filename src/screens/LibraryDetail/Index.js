@@ -12,6 +12,8 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import {Dua} from '../../components/Data';
 import {LibraryData} from '../../components/LibraryData';
 import {colors} from '../../styles/colors';
+import Fonts from '../../styles/Fonts';
+import Header from '../../components/Header';
 import RenderHtml from 'react-native-render-html';
 
 const LibraryDetailScreen = props => {
@@ -22,6 +24,7 @@ const LibraryDetailScreen = props => {
     headerContainer,
     titleText,
     containerStyle,
+    innerContainer,
   } = styles;
 
   const {data, id} = props.route.params;
@@ -29,31 +32,36 @@ const LibraryDetailScreen = props => {
   const source = {
     html: LibraryData[id - 1].data,
   };
-
+  const {RalewaySemiBold, RalewayBold} = Fonts;
   return (
-    <ScrollView style={container}>
-      <View>
+    <View style={container}>
+      <Header title={'VEIEN TIL ALLAH'} navigation={props.navigation} />
+      <ScrollView style={innerContainer}>
         <View style={headerContainer}>
-          <Text style={headerTitle}>{data}</Text>
+          <Text style={[headerTitle, RalewayBold]}>{data}</Text>
         </View>
         <View style={containerStyle}>
           <TouchableOpacity style={titleContainer} activeOpacity={0.7}>
             <RenderHtml
               source={source}
-              baseStyle={{marginHorizontal: 15, color: colors.grey}}
-              systemFonts={['Montserrat-Regular']}
+              baseStyle={{
+                marginHorizontal: 15,
+                color: colors.grey,
+                fontFamily: 'Raleway-Medium',
+              }}
+              systemFonts={['Raleway-Regular']}
             />
           </TouchableOpacity>
         </View>
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.orangeExtraLight,
+    backgroundColor: colors.orangeMedium,
   },
   innerContainer: {},
   titleContainer: {
@@ -78,6 +86,14 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     borderTopLeftRadius: 15,
     borderTopRightRadius: 15,
+  },
+  innerContainer: {
+    backgroundColor: colors.orangeExtraLight,
+    flex: 1,
+    marginTop: 30,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    elevation: 5,
   },
   titleText: {
     fontSize: 17,
@@ -112,7 +128,6 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     paddingVertical: 12,
     color: colors.orangeDark,
-    fontWeight: 'bold',
     fontSize: 16,
   },
 });

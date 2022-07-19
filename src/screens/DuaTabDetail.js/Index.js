@@ -23,11 +23,11 @@ const DuaScreen = props => {
     containerStyle,
     innerContainer,
   } = styles;
-  useLayoutEffect(() => {
-    props.navigation.setOptions({
-      headerTitle: props.route.params.title,
-    });
-  }, []);
+  //   useLayoutEffect(() => {
+  //     props.navigation.setOptions({
+  //       headerTitle: props.route.params.title,
+  //     });
+  //   }, []);
 
   const data = props.route.params.data;
 
@@ -42,9 +42,9 @@ const DuaScreen = props => {
     );
   };
   return (
-    <ScrollView style={container}>
+    <View style={container}>
       <Header title={'VEIEN TIL ALLAH'} navigation={props.navigation} />
-      <View style={innerContainer}>
+      <ScrollView style={innerContainer}>
         <View style={headerContainer}>
           <Text style={headerTitle}>{props.route.params.title}</Text>
         </View>
@@ -63,8 +63,8 @@ const DuaScreen = props => {
           contentContainerStyle={containerStyle}
           renderItem={renderItem}
         />
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 };
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     marginTop: 30,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    elevation: 5,
+    elevation: 3,
   },
   titleContainer: {
     // alignItems: 'center',

@@ -9,7 +9,8 @@ import {
 } from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {colors} from '../../styles/colors';
-
+import Header from '../../components/Header';
+import Fonts from '../../styles/Fonts';
 const PrayerScreen = ({navigation}) => {
   const {container, innerContainer, titleContainer, titleText} = styles;
   const data = [
@@ -19,6 +20,7 @@ const PrayerScreen = ({navigation}) => {
     {title: 'STAVANGER', id: 4},
     {title: 'TRONDHEIM', id: 5},
   ];
+  const {RalewaySemiBold, RalewayBold} = Fonts;
   const renderItem = ({item}) => {
     return (
       <TouchableOpacity
@@ -27,12 +29,13 @@ const PrayerScreen = ({navigation}) => {
         }
         style={titleContainer}
         activeOpacity={0.7}>
-        <Text style={titleText}>{item.title}</Text>
+        <Text style={[titleText, RalewayBold]}>{item.title}</Text>
       </TouchableOpacity>
     );
   };
   return (
     <View style={container}>
+      <Header title={'Prayer'} navigation={navigation} />
       <View style={innerContainer}>
         <FlatList
           data={data}
@@ -51,9 +54,16 @@ const PrayerScreen = ({navigation}) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: colors.orangeLight,
+    backgroundColor: colors.orangeMedium,
   },
-  innerContainer: {},
+  innerContainer: {
+    backgroundColor: colors.orangeExtraLight,
+    flex: 1,
+    marginTop: 30,
+    borderTopLeftRadius: 30,
+    borderTopRightRadius: 30,
+    elevation: 5,
+  },
   titleContainer: {
     alignItems: 'center',
     borderWidth: 2,
@@ -66,7 +76,6 @@ const styles = StyleSheet.create({
   },
   titleText: {
     fontSize: 17,
-    fontWeight: 'bold',
     color: colors.orangeMedium,
   },
 });
