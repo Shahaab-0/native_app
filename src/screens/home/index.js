@@ -36,52 +36,6 @@ const HomeScreen = ({navigation}) => {
     {title: 'Midnight', time: '00-07', id: 11},
   ];
 
-  const [prayerData, setPrayerData] = useState('');
-
-  useEffect(() => {
-    try {
-      Geolocation.getCurrentPosition(
-        location => {
-          console.log('In here', location);
-
-          const lat = location.coords.latitude;
-          const lng = location.coords.longitude;
-          var a = getByMonth({
-            month: 7,
-            year: 2022,
-            long: lng,
-            lat: lat,
-            method: 'Karachi',
-            timeFormat: '12h',
-          });
-          setPrayerData(a);
-        },
-        error => {
-          console.log('in error of location permission', error);
-          // ERROR CODES:
-          // 1: No Permission
-          // 2: Location is disables
-          // 3: Time out
-
-          if (error.code === 1) {
-            alert('Please allow permission');
-            // setLocationModal(!locationModal);
-          } else if (error.code === 2) {
-            alert('please turn on location');
-            // setLocationModal1(!locationModal1);
-
-            // Alert.aler('Please enable device loaction!');
-          } else {
-            alert('something when wrong');
-          }
-        },
-      );
-    } catch {
-      console.log('In catch');
-    }
-  }, []);
-  console.log(prayerData);
-
   const renderItem = ({item, index}) => {
     return (
       <View>

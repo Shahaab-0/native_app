@@ -2,6 +2,7 @@ import React from 'react';
 import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
 import {prayerTabe} from '../../components/PrayerTableData';
 import {colors} from '../../styles/colors';
+import Header from '../../components/Header';
 
 const PrayerDetailScreen = props => {
   const {container, headerText, tableHeader, itemText, tableContainer} = styles;
@@ -27,6 +28,7 @@ const PrayerDetailScreen = props => {
   };
   return (
     <View style={{flex: 1, backgroundColor: colors.orangeMedium}}>
+      <Header title={'Prayer'} navigation={props.navigation} />
       <ScrollView style={container}>
         <Text style={headerText}>{props.route.params.title}</Text>
         <View
