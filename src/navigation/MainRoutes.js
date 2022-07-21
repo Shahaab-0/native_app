@@ -116,7 +116,7 @@ export const Screens = ({navigation, style}) => {
           name="BottomTab"
           component={BottomTabs}
         />
-        <Stack.Screen
+        {/* <Stack.Screen
           options={{
             headerTitle: 'Dua',
             headerTintColor: '#fff',
@@ -178,7 +178,7 @@ export const Screens = ({navigation, style}) => {
           }}
           name="DuaTab"
           component={DuaTab}
-        />
+        /> */}
       </Stack.Navigator>
     </Animated.View>
   );

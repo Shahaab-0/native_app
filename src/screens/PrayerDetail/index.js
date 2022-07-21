@@ -30,7 +30,7 @@ const PrayerDetailScreen = props => {
     <View style={{flex: 1, backgroundColor: colors.orangeMedium}}>
       <Header title={'Prayer'} navigation={props.navigation} />
       <ScrollView style={container}>
-        <Text style={headerText}>{props.route.params.title}</Text>
+        <Text style={headerText}>{'props.route.params.title'}</Text>
         <View
           style={{
             borderColor: colors.orangeDark,

@@ -1,17 +1,26 @@
 import React, {useEffect, useState} from 'react';
-import {FlatList, ScrollView, StyleSheet, Text, View} from 'react-native';
+import {
+  FlatList,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
+} from 'react-native';
 import {prayerTabe} from '../../components/PrayerTableData';
 import {colors} from '../../styles/colors';
 import Header from '../../components/Header';
 import Geolocation from '@react-native-community/geolocation';
 import {getByMonth} from 'prayertiming';
+import Fonts from '../../styles/Fonts';
 let dateArr = [];
 const PrayerDetailScreen = props => {
   const {container, headerText, tableHeader, itemText, tableContainer} = styles;
   var date = new Date();
   console.log(date.getMonth() + 1);
   const [prayerData, setPrayerData] = useState('');
-  const [month, setMonth] = useState(date.getMonth() + 1);
+  const [month, setMonth] = useState(date.getMonth());
+  const [showMore, setShowMore] = useState(false);
 
   useEffect(() => {
     try {
@@ -61,16 +70,18 @@ const PrayerDetailScreen = props => {
       console.log('In catch');
     }
   }, [month]);
-  console.log(dateArr, 'datearra');
+
+  useEffect(() => {
+    if (showMore) {
+      if (month < 11) {
+        setMonth(month + 1);
+      } else if (month === 12) {
+        setShowMore(false);
+      }
+    }
+  }, [showMore, month]);
 
   const renderItem = ({item}) => {
-    // console.log(
-    //   item.date.getDate(),
-    //   item.date.getMonth(),
-    //   item.date.getYear(),
-    //   item.date.getDay(),
-    //   'item <<<<<<',
-    // );
     return (
       <View
         style={{
@@ -95,33 +106,40 @@ const PrayerDetailScreen = props => {
       </View>
     );
   };
-  useEffect(() => {
-    if (
-      prayerData.length === 31 ||
-      prayerData.length === 62 ||
-      prayerData.length === 61 ||
-      prayerData.length === 60 ||
-      prayerData.length === 60
-    ) {
-      alert(prayerData.length);
-      setMonth(month + 1);
-    }
-  }, [prayerData.length]);
+  console.log(
+    date.getMonth() + 1,
+    '><<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<',
+  );
+  // useEffect(() => {
+  //   if (
+  //     prayerData.length === 31 ||
+  //     prayerData.length === 62 ||
+  //     prayerData.length === 61 ||
+  //     prayerData.length === 60 ||
+  //     prayerData.length === 60
+  //   ) {
+  //     // setMonth(month + 1);
+  //   }
+  // }, [prayerData.length]);
+
+  const {RalewayBlack, RalewaySemiBold, RalewayMedium, RalewayBold} = Fonts;
   return (
-    <View
-      style={{flex: 1, backgroundColor: colors.orangeMedium, marginBottom: 60}}>
+    <View style={{flex: 1, backgroundColor: colors.orangeMedium}}>
       <Header title={'Prayer'} navigation={props.navigation} />
-      <ScrollView style={container}>
-        <Text style={headerText}>{'title'}</Text>
+      <View style={container}>
+        {/* <Text style={headerText}>{'title'}</Text> */}
         <View
           style={{
-            borderColor: colors.orangeDark,
-            borderWidth: 1,
             borderRadius: 15,
             elevation: 10,
             marginHorizontal: 20,
-            marginTop: 5,
-            marginBottom: 70,
+            marginTop: 22,
+            flex: 1,
+            backgroundColor: '#fff',
+            borderWidth: 1,
+            borderColor: colors.orangeDark,
+            borderBottomLeftRadius: 15,
+            borderBottomRightRadius: 15,
           }}>
           <View style={tableContainer}>
             <Text style={[tableHeader, {}]}>Dato</Text>
@@ -132,21 +150,39 @@ const PrayerDetailScreen = props => {
             <Text style={[tableHeader]}>Solned</Text>
             <Text style={[tableHeader, {textAlign: 'right'}]}>Maghrib</Text>
           </View>
-          <View>
+          <View style={{flex: 1}}>
             <FlatList
+              bounces={false}
+              showsVerticalScrollIndicator={false}
               data={prayerData}
               contentContainerStyle={{
-                backgroundColor: '#fff',
                 borderBottomLeftRadius: 15,
                 borderBottomRightRadius: 15,
                 paddingBottom: 10,
-                flex: 1,
+
+                borderTopWidth: 0,
+                paddingBottom: 10,
               }}
               renderItem={renderItem}
             />
           </View>
         </View>
-      </ScrollView>
+        <TouchableOpacity activeOpacity={0.7} onPress={() => setShowMore(true)}>
+          <Text
+            style={[
+              {
+                color: colors.darkBlue,
+                margin: 20,
+                textAlign: 'center',
+                fontSize: 17,
+                marginBottom: 40,
+              },
+              RalewayBold,
+            ]}>
+            Show More
+          </Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -156,15 +192,14 @@ const styles = StyleSheet.create({
     backgroundColor: colors.orangeExtraLight,
     borderTopLeftRadius: 30,
     borderTopRightRadius: 30,
-    elevation: 5,
     marginTop: 30,
+    flex: 1,
   },
   headerText: {
     fontSize: 18,
     color: 'grey',
     marginHorizontal: 20,
     marginTop: 20,
-    marginBottom: 30,
   },
   tableHeader: {
     color: colors.orangeDark,
