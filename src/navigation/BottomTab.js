@@ -71,7 +71,6 @@ const TabButton = ({state, descriptors, navigation}) => {
             textRef.current.transitionTo({scale: 1});
           }
         }, [isFocused]);
-        console.log(isFocused, item, '>><<<');
         return (
           <View style={{}}>
             <TouchableOpacity

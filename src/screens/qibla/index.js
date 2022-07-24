@@ -43,9 +43,7 @@ const QiblaScreen = props => {
             {transform: [{rotate: `${360 - compassHeading}deg`}]},
           ]}
           resizeMode="contain"
-          source={{
-            uri: 'https://is1-ssl.mzstatic.com/image/thumb/Purple118/v4/c9/eb/64/c9eb64f9-f3c9-c7a1-6e41-6e7c532ed01d/source/512x512bb.jpg',
-          }}
+          source={require('../../assets/images/compass.png')}
         />
       </View>
     </View>
